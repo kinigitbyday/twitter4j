@@ -38,7 +38,7 @@ import java.util.List;
     private List<Status> tweets;
     private String nextResults;
 
-    /*package*/ QueryResultJSONImpl(HttpResponse res, Configuration conf) throws TwitterException {
+    /*package*/ QueryResultJSONImpl(HttpResponse res, Configuration conf, boolean extendedMode) throws TwitterException {
         super(res);
         JSONObject json = res.asJSONObject();
         try {
@@ -58,7 +58,11 @@ import java.util.List;
             }
             for (int i = 0; i < array.length(); i++) {
                 JSONObject tweet = array.getJSONObject(i);
-                tweets.add(new StatusJSONImpl(tweet, conf));
+                if (extendedMode) {
+                    tweets.add(new ExtendedStatusJSONImpl(tweet, conf));
+                } else {
+                    tweets.add(new StatusJSONImpl(tweet, conf));
+                }
             }
         } catch (JSONException jsone) {
             throw new TwitterException(jsone.getMessage() + ":" + json.toString(), jsone);

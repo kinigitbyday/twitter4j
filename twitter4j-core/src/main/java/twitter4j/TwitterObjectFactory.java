@@ -59,6 +59,22 @@ public final class TwitterObjectFactory {
     }
 
     /**
+     * Constructs an  Extended Status object from rawJSON string.
+     *
+     * @param rawJSON raw JSON form as String
+     * @return Status
+     * @throws TwitterException when provided string is not a valid JSON string.
+     * @since Twitter4J 2.1.7
+     */
+    public static Status createExtendedStatus(String rawJSON) throws TwitterException {
+        try {
+            return new ExtendedStatusJSONImpl(new JSONObject(rawJSON));
+        } catch (JSONException e) {
+            throw new TwitterException(e);
+        }
+    }
+
+    /**
      * Constructs a User object from rawJSON string.
      *
      * @param rawJSON raw JSON form as String
