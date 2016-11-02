@@ -30,12 +30,6 @@ public final class ConfigurationBuilder {
 
     private ConfigurationBase configurationBean = new PropertyConfiguration();
 
-    public ConfigurationBuilder setUseSSL(boolean useSSL) {
-        checkNotBuilt();
-        configurationBean.setUseSSL(useSSL);
-        return this;
-    }
-
     public ConfigurationBuilder setPrettyDebugEnabled(boolean prettyDebugEnabled) {
         checkNotBuilt();
         configurationBean.setPrettyDebugEnabled(prettyDebugEnabled);
@@ -51,6 +45,12 @@ public final class ConfigurationBuilder {
     public ConfigurationBuilder setDebugEnabled(boolean debugEnabled) {
         checkNotBuilt();
         configurationBean.setDebug(debugEnabled);
+        return this;
+    }
+
+    public ConfigurationBuilder setApplicationOnlyAuthEnabled(boolean applicationOnlyAuthEnabled) {
+        checkNotBuilt();
+        configurationBean.setApplicationOnlyAuthEnabled(applicationOnlyAuthEnabled);
         return this;
     }
 
@@ -114,19 +114,6 @@ public final class ConfigurationBuilder {
         return this;
     }
 
-
-    public ConfigurationBuilder setHttpMaxTotalConnections(int httpMaxConnections) {
-        checkNotBuilt();
-        configurationBean.setHttpMaxTotalConnections(httpMaxConnections);
-        return this;
-    }
-
-    public ConfigurationBuilder setHttpDefaultMaxPerRoute(int httpDefaultMaxPerRoute) {
-        checkNotBuilt();
-        configurationBean.setHttpDefaultMaxPerRoute(httpDefaultMaxPerRoute);
-        return this;
-    }
-
     public ConfigurationBuilder setHttpRetryIntervalSeconds(int httpRetryIntervalSeconds) {
         checkNotBuilt();
         configurationBean.setHttpRetryIntervalSeconds(httpRetryIntervalSeconds);
@@ -157,6 +144,24 @@ public final class ConfigurationBuilder {
         return this;
     }
 
+    public ConfigurationBuilder setOAuth2TokenType(String oAuth2TokenType) {
+        checkNotBuilt();
+        configurationBean.setOAuth2TokenType(oAuth2TokenType);
+        return this;
+    }
+
+    public ConfigurationBuilder setOAuth2AccessToken(String oAuth2AccessToken) {
+        checkNotBuilt();
+        configurationBean.setOAuth2AccessToken(oAuth2AccessToken);
+        return this;
+    }
+
+    public ConfigurationBuilder setOAuth2Scope(String oAuth2Scope) {
+        checkNotBuilt();
+        configurationBean.setOAuth2Scope(oAuth2Scope);
+        return this;
+    }
+
     public ConfigurationBuilder setOAuthRequestTokenURL(String oAuthRequestTokenURL) {
         checkNotBuilt();
         configurationBean.setOAuthRequestTokenURL(oAuthRequestTokenURL);
@@ -178,6 +183,18 @@ public final class ConfigurationBuilder {
     public ConfigurationBuilder setOAuthAuthenticationURL(String oAuthAuthenticationURL) {
         checkNotBuilt();
         configurationBean.setOAuthAuthenticationURL(oAuthAuthenticationURL);
+        return this;
+    }
+
+    public ConfigurationBuilder setOAuth2TokenURL(String oAuth2TokenURL) {
+        checkNotBuilt();
+        configurationBean.setOAuth2TokenURL(oAuth2TokenURL);
+        return this;
+    }
+
+    public ConfigurationBuilder setOAuth2InvalidateTokenURL(String invalidateTokenURL) {
+        checkNotBuilt();
+        configurationBean.setOAuth2InvalidateTokenURL(invalidateTokenURL);
         return this;
     }
 
@@ -211,21 +228,15 @@ public final class ConfigurationBuilder {
         return this;
     }
 
+    public ConfigurationBuilder setDaemonEnabled(boolean daemonEnabled) {
+        checkNotBuilt();
+        configurationBean.setDaemonEnabled(daemonEnabled);
+        return this;
+    }
+
     public ConfigurationBuilder setContributingTo(long contributingTo) {
         checkNotBuilt();
         configurationBean.setContributingTo(contributingTo);
-        return this;
-    }
-
-    public ConfigurationBuilder setClientVersion(String clientVersion) {
-        checkNotBuilt();
-        configurationBean.setClientVersion(clientVersion);
-        return this;
-    }
-
-    public ConfigurationBuilder setClientURL(String clientURL) {
-        checkNotBuilt();
-        configurationBean.setClientURL(clientURL);
         return this;
     }
 
@@ -235,27 +246,33 @@ public final class ConfigurationBuilder {
         return this;
     }
 
-    public ConfigurationBuilder setIncludeRTsEnabled(boolean enabled) {
-        checkNotBuilt();
-        configurationBean.setIncludeRTsEnbled(enabled);
-        return this;
-    }
-
-    public ConfigurationBuilder setIncludeEntitiesEnabled(boolean enabled) {
-        checkNotBuilt();
-        configurationBean.setIncludeEntitiesEnbled(enabled);
-        return this;
-    }
-    
     public ConfigurationBuilder setTrimUserEnabled(boolean enabled) {
         checkNotBuilt();
         configurationBean.setTrimUserEnabled(enabled);
         return this;
     }
 
+    public ConfigurationBuilder setIncludeExtAltTextEnabled(boolean enabled) {
+        checkNotBuilt();
+        configurationBean.setIncludeExtAltTextEnabled(enabled);
+        return this;
+    }
+
     public ConfigurationBuilder setIncludeMyRetweetEnabled(boolean enabled) {
         checkNotBuilt();
         configurationBean.setIncludeMyRetweetEnabled(enabled);
+        return this;
+    }
+
+    public ConfigurationBuilder setIncludeEntitiesEnabled(boolean enabled) {
+        checkNotBuilt();
+        configurationBean.setIncludeEntitiesEnabled(enabled);
+        return this;
+    }
+
+    public ConfigurationBuilder setIncludeEmailEnabled(boolean enabled) {
+        checkNotBuilt();
+        configurationBean.setIncludeEmailEnabled(enabled);
         return this;
     }
 
@@ -277,6 +294,12 @@ public final class ConfigurationBuilder {
         return this;
     }
 
+    public ConfigurationBuilder setUserStreamWithFollowingsEnabled(boolean enabled) {
+        checkNotBuilt();
+        configurationBean.setUserStreamWithFollowingsEnabled(enabled);
+        return this;
+    }
+
     public ConfigurationBuilder setMediaProvider(String mediaProvider) {
         checkNotBuilt();
         configurationBean.setMediaProvider(mediaProvider);
@@ -292,12 +315,6 @@ public final class ConfigurationBuilder {
     public ConfigurationBuilder setMediaProviderParameters(Properties props) {
         checkNotBuilt();
         configurationBean.setMediaProviderParameters(props);
-        return this;
-    }
-
-    public ConfigurationBuilder setLoggerImpl(String loggerImpl) {
-        checkNotBuilt();
-        configurationBean.setLoggerFactory(loggerImpl);
         return this;
     }
 
