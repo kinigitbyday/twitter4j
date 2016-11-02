@@ -43,6 +43,7 @@ public final class Query implements java.io.Serializable {
     private String until = null;
     private ResultType resultType = null;
     private String nextPageQuery = null;
+    private TweetMode tweetMode = null;
 
     public Query() {
     }
@@ -96,7 +97,8 @@ public final class Query implements java.io.Serializable {
             }
             if(params.containsKey("result_type"))
                 query.setResultType(Query.ResultType.valueOf(params.get("result_type")));
-            
+            if(params.containsKey("tweet_mode"))
+                query.setTweetMode(Query.TweetMode.valueOf(params.get("tweet_mode")));
             // We don't pull out since, until -- they get pushed into the query
         }
         
@@ -260,6 +262,27 @@ public final class Query implements java.io.Serializable {
         setCount(count);
         return this;
     }
+
+    public final static TweetMode EXTENDED = TweetMode.extended;
+    public final static TweetMode COMPAT = TweetMode.compat;
+
+    public enum TweetMode {
+        extended, compat
+    }
+
+    /**
+     * sets the tweet mode for the query to support the optional extended tweet format
+     * @param tweetMode the tweet mode to use in the query
+     * @return
+     */
+    public Query tweetMode(TweetMode tweetMode) {
+        setTweetMode(tweetMode);
+        return this;
+    }
+
+    public void setTweetMode(TweetMode tweetMode) { this.tweetMode = tweetMode; }
+
+    public TweetMode getTweetMode() { return this.tweetMode; }
 
     /**
      * Returns tweets with since the given date.  Date should be formatted as YYYY-MM-DD
@@ -476,6 +499,9 @@ public final class Query implements java.io.Serializable {
         appendParameter("until", until, params);
         if (resultType != null) {
             params.add(new HttpParameter("result_type", resultType.name()));
+        }
+        if (tweetMode != null) {
+            params.add(new HttpParameter("tweet_mode", tweetMode.name()));
         }
         params.add(WITH_TWITTER_USER_ID);
         HttpParameter[] paramArray = new HttpParameter[params.size()];

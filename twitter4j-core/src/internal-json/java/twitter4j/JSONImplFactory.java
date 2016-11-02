@@ -142,7 +142,7 @@ class JSONImplFactory implements ObjectFactory {
     @Override
     public QueryResult createQueryResult(HttpResponse res, Query query) throws TwitterException {
         try {
-            return new QueryResultJSONImpl(res, conf);
+            return new QueryResultJSONImpl(res, conf, query.getTweetMode() == Query.TweetMode.extended);
         } catch (TwitterException te) {
             if (404 == te.getStatusCode()) {
                 return new QueryResultJSONImpl(query);
